@@ -220,6 +220,7 @@
         display: inline-block; /* Ensure items respect column layout */
         width: 100%; /* Ensure items take full column width */
         text-align: center; /* Center content inside masonry-item */
+        cursor: pointer; /* Indicate clickable item */
     }
     .masonry-item:hover {
         transform: scale(1.05);
@@ -251,6 +252,35 @@
     .masonry-item:hover .overlay {
         opacity: 1;
     }
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        justify-content: center;
+        align-items: center;
+        overflow: auto;
+    }
+    .modal-content {
+        max-width: 90%;
+        max-height: 90%;
+        margin: auto;
+        display: block;
+    }
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+    }
     @media (max-width: 768px) {
         .masonry {
             column-count: 2; /* 2 columns for tablets */
@@ -267,40 +297,67 @@
 </style>
 </head>
 <body class="min-h-screen flex flex-col">
-
     <!-- Gallery Section -->
-            <div class="masonry">
-            <div class="masonry-item">
-                <img src="1.jpg" alt="Bale Performansı 1">
-            </div>
-            <div class="masonry-item">
-                <img src="2.jpg" alt="Bale Performansı 2">
-            </div>
-            <div class="masonry-item">
-                <img src="3.jpg" alt="Bale Performansı 3">
-            </div>
-            <div class="masonry-item">
-                <img src="4.jpg" alt="Bale Performansı 4">
-            </div>
-            <div class="masonry-item">
-                <img src="5.jpg" alt="Bale Performansı 5">
-            </div>
-            <div class="masonry-item">
-                <img src="6.jpg" alt="Bale Performansı 6">
-            </div>
-			<div class="masonry-item">
-                <img src="7.jpg" alt="Bale Performansı 1">
-            </div>
-            <div class="masonry-item">
-                <img src="8.jpg" alt="Bale Performansı 2">
-            </div>
-            <div class="masonry-item">
-                <img src="9.jpg" alt="Bale Performansı 3">
-            </div>
+    <div class="masonry">
+        <div class="masonry-item" onclick="openModal('1.jpg')">
+            <img src="1.jpg" alt="Bale Performansı 1">
         </div>
-    </section>
-   
-    </section>
+        <div class="masonry-item" onclick="openModal('2.jpg')">
+            <img src="2.jpg" alt="Bale Performansı 2">
+        </div>
+        <div class="masonry-item" onclick="openModal('3.jpg')">
+            <img src="3.jpg" alt="Bale Performansı 3">
+        </div>
+        <div class="masonry-item" onclick="openModal('4.jpg')">
+            <img src="4.jpg" alt="Bale Performansı 4">
+        </div>
+        <div class="masonry-item" onclick="openModal('5.jpg')">
+            <img src="5.jpg" alt="Bale Performansı 5">
+        </div>
+        <div class="masonry-item" onclick="openModal('6.jpg')">
+            <img src="6.jpg" alt="Bale Performansı 6">
+        </div>
+        <div class="masonry-item" onclick="openModal('7.jpg')">
+            <img src="7.jpg" alt="Bale Performansı 7">
+        </div>
+        <div class="masonry-item" onclick="openModal('8.jpg')">
+            <img src="8.jpg" alt="Bale Performansı 8">
+        </div>
+        <div class="masonry-item" onclick="openModal('9.jpg')">
+            <img src="9.jpg" alt="Bale Performansı 9">
+        </div>
+    </div>
+
+    <!-- Modal for full-screen image -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script>
+        // Open the modal with the clicked image
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'flex';
+            modalImg.src = imageSrc;
+        }
+
+        // Close the modal
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+
+        // Close modal when clicking outside the image
+        document.getElementById('imageModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
 	
 <section id="hakkımızda" class="category w-full max-w-6xl hidden mb-8 sm:mb-12 px-4">
     <img src="logo.jpg" alt="Açıklama" width="400" height="400" style="display: block; margin-left: auto; margin-right: auto;">
@@ -505,6 +562,7 @@
     </script>
 </body>
 </html>
+
 
 
 
