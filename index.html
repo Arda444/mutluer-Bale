@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            background-color: #2B8F98; /* Turquoise background */
+            background-color: #2B8F98; 
         }
         .image-card {
             transition: transform 0.3s;
@@ -19,7 +19,7 @@
             transition: background-color 0.3s;
         }
         .tab:hover {
-            background-color: #1D5D62; /* Darker turquoise on hover */
+            background-color: #1D5D62; 
         }
         .tab.active {
             background-color: #1D5D62; /* Darker turquoise for active tab */
@@ -30,99 +30,105 @@
 <body class="min-h-screen flex flex-col items-center py-4 sm:py-8">
     <h1 class="text-3xl sm:text-4xl font-bold text-white mb-6 sm:mb-8">Mutluer Bale</h1>
 
-    <!-- Tabs -->
-    <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 mb-6 sm:mb-8 w-full max-w-6xl px-4">
-        <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg active" onclick="showCategory('nature')">Anasayfa</button>
-        <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg" onclick="showCategory('animals')">Baleden Esintiler</button>
-		 <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg" onclick="showCategory('animals')">Galeri</button>
-        <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg" onclick="showCategory('cities')">Hakkımızda</button>
-        <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg" onclick="showCategory('contact')">İletişim</button>
-    </div>
+<div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 mb-6 sm:mb-8 w-full max-w-6xl px-4 justify-center items-center">
+    <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg active" onclick="showCategory('anasayfa')">Anasayfa</button>
+    <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg" onclick="showCategory('baledenesintiler')">Baleden Esintiler</button>
+    <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg" onclick="showCategory('galeri')">Galeri</button>
+    <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg" onclick="showCategory('hakkımızda')">Hakkımızda</button>
+    <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg" onclick="showCategory('iletişim')">İletişim</button>
+</div>
 
     <!-- Image Sections -->
-    <section id="nature" class="category w-full max-w-6xl mb-8 sm:mb-12 px-4">
-        <h2 class="text-xl sm:text-2xl font-semibold text-white mb-4">Fotoğraflar</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-            <div class="image-card bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="https://via.placeholder.com/400x300?text=Nature+1" alt="Nature Image 1" class="w-full h-40 sm:h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="text-base sm:text-lg font-medium">Forest</h3>
-                    <p class="text-gray-600 text-sm sm:text-base">A serene forest landscape.</p>
-                </div>
-            </div>
-            <div class="image-card bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="https://via.placeholder.com/400x300?text=Nature+2" alt="Nature Image 2" class="w-full h-40 sm:h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="text-base sm:text-lg font-medium">Mountain</h3>
-                    <p class="text-gray-600 text-sm sm:text-base">Majestic mountain view.</p>
-                </div>
-            </div>
-            <div class="image-card bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="https://via.placeholder.com/400x300?text=Nature+3" alt="Nature Image 3" class="w-full h-40 sm:h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="text-base sm:text-lg font-medium">Lake</h3>
-                    <p class="text-gray-600 text-sm sm:text-base">Calm lake scenery.</p>
-                </div>
-            </div>
-        </div>
+    <section id="anasayfa" class="category w-full max-w-6xl mb-8 sm:mb-12 px-4">
+    <img src="balerin.png" alt="Açıklama" width="492" height="500" style="display: block; margin-left: auto; margin-right: auto;">
+	
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutluer Bale - Süslü Yazı</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #2B8F98; /* Turquoise background */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center; /* Horizontal centering */
+            align-items: center; /* Vertical centering */
+            margin: 0;
+            padding: 1rem; /* Padding for small screens */
+        }
+
+        .ballerina-text {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            font-size: 2.5rem; /* Default font size for large screens */
+            color: #ffffff; /* White text for contrast */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow effect */
+            text-align: center; /* Center text within the div */
+            padding: 1rem;
+            border-radius: 15px;
+            display: block; /* Use block for better centering */
+            width: fit-content; /* Only take necessary width */
+            max-width: 90%; /* Limit width for mobile */
+            line-height: 1.4; /* Improve readability for long text */
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto; /* Ensure horizontal centering */
+        }
+
+
+        @keyframes sparkle {
+            0% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0.5; transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .ballerina-text {
+                font-size: 1.8rem; /* Smaller font for tablets */
+                padding: 0.75rem;
+            }
+
+            .ballerina-text::before,
+            .ballerina-text::after {
+                font-size: 1.5rem; /* Smaller decoration for tablets */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ballerina-text {
+                font-size: 1.5rem; /* Smaller font for mobile */
+                padding: 0.5rem;
+            }
+
+            .ballerina-text::before,
+            .ballerina-text::after {
+                font-size: 1.2rem; /* Smaller decoration for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ballerina-text">
+        Mutluer Bale ile dansın büyülü dünyasına adım atın! Her yaştan ve seviyeden bale tutkunlarına, profesyonel eğitmenlerimizle ilham verici bir yolculuk sunuyoruz. Disiplin, zarafet ve tutkunun birleştiği bu sanatta, hayallerinizi sahneye taşımak için yanınızdayız. Mutluer Bale, sadece bir kurs değil, aynı zamanda kendinizi keşfedeceğiniz, bedeninizi ve ruhunuzu özgür bırakacağınız bir yaşam tarzıdır. Gelin, bu eşsiz serüvene birlikte başlayalım!
+    </div>
+</body>
+</html>
+		
+	</section>
+	
+    <section id="baledenesintiler" class="category w-full max-w-6xl hidden mb-8 sm:mb-12 px-4">
+        
     </section>
 
-    <section id="animals" class="category w-full max-w-6xl hidden mb-8 sm:mb-12 px-4">
-        <h2 class="text-xl sm:text-2xl font-semibold text-white mb-4">Galeri</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-            <div class="image-card bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="https://via.placeholder.com/400x300?text=Animal+1" alt="Animal Image 1" class="w-full h-40 sm:h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="text-base sm:text-lg font-medium">Tiger</h3>
-                    <p class="text-gray-600 text-sm sm:text-base">A powerful tiger in the wild.</p>
-                </div>
-            </div>
-            <div class="image-card bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="https://via.placeholder.com/400x300?text=Animal+2" alt="Animal Image 2" class="w-full h-40 sm:h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="text-base sm:text-lg font-medium">Elephant</h3>
-                    <p class="text-gray-600 text-sm sm:text-base">A gentle giant in its habitat.</p>
-                </div>
-            </div>
-            <div class="image-card bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="https://via.placeholder.com/400x300?text=Animal+3" alt="Animal Image 3" class="w-full h-40 sm:h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="text-base sm:text-lg font-medium">Bird</h3>
-                    <p class="text-gray-600 text-sm sm:text-base">A colorful bird in flight.</p>
-                </div>
-            </div>
-        </div>
+    <section id="galeri" class="category w-full max-w-6xl hidden mb-8 sm:mb-12 px-4">
+        
+    </section>
+	
+<section id="hakkımızda" class="category w-full max-w-6xl hidden mb-8 sm:mb-12 px-4">
+        
     </section>
 
-    <section id="cities" class="category w-full max-w-6xl hidden mb-8 sm:mb-12 px-4">
-        <h2 class="text-xl sm:text-2xl font-semibold text-white mb-4">Hakkımızda</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-            <div class="image-card bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="https://via.placeholder.com/400x300?text=City+1" alt="City Image 1" class="w-full h-40 sm:h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="text-base sm:text-lg font-medium">New York</h3>
-                    <p class="text-gray-600 text-sm sm:text-base">Vibrant city skyline.</p>
-                </div>
-            </div>
-            <div class="image-card bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="https://via.placeholder.com/400x300?text=City+2" alt="City Image 2" class="w-full h-40 sm:h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="text-base sm:text-lg font-medium">Tokyo</h3>
-                    <p class="text-gray-600 text-sm sm:text-base">Bustling urban scene.</p>
-                </div>
-            </div>
-            <div class="image-card bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="https://via.placeholder.com/400x300?text=City+3" alt="City Image 3" class="w-full h-40 sm:h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="text-base sm:text-lg font-medium">Paris</h3>
-                    <p class="text-gray-600 text-sm sm:text-base">Romantic city lights.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="category w-full max-w-6xl hidden mb-8 sm:mb-12 px-4">
+    <section id="iletişim" class="category w-full max-w-6xl hidden mb-8 sm:mb-12 px-4">
         <h2 class="text-xl sm:text-2xl font-semibold text-white mb-4">İletişim</h2>
         <div class="bg-white rounded-lg shadow-lg p-4 sm:p-6">
             <div class="space-y-6">
@@ -176,8 +182,7 @@
             document.querySelector(`button[onclick="showCategory('${categoryId}')"]`).classList.add('active');
         }
 
-        // Initialize with Nature category visible
-        showCategory('nature');
+                showCategory('anasayfa');
     </script>
 </body>
 </html>
