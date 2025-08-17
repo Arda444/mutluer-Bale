@@ -5,90 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mutluer Bale</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            background-color: #2B8F98; 
-        }
-        .image-card {
-            transition: transform 0.3s;
-        }
-        .image-card:hover {
-            transform: scale(1.05);
-        }
-        .tab {
-            transition: background-color 0.3s;
-        }
-        .tab:hover {
-            background-color: #1D5D62; 
-        }
-        .tab.active {
-            background-color: #1D5D62; /* Darker turquoise for active tab */
-            color: white;
-        }
-    </style>
-</head>
-<body class="min-h-screen flex flex-col items-center py-4 sm:py-8">
-    <h1 class="text-3xl sm:text-4xl font-bold text-white mb-6 sm:mb-8">Mutluer Bale</h1>
-
-<div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 mb-6 sm:mb-8 w-full max-w-6xl px-4 justify-center items-center">
-    <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg active" onclick="showCategory('anasayfa')">Anasayfa</button>
-    <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg" onclick="showCategory('baledenesintiler')">Baleden Esintiler</button>
-    <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg" onclick="showCategory('galeri')">Galeri</button>
-    <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg" onclick="showCategory('iletişim')">İletişim</button>
-</div>
-
-    <!-- Image Sections -->
-    <section id="anasayfa" class="category w-full max-w-6xl mb-8 sm:mb-12 px-4">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mutluer Bale - Galeri</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body {
             background-color: #2B8F98;
             min-height: 100vh;
             display: flex;
-            justify-content: center;
-            align-items: center;
             flex-direction: column;
+            align-items: center;
             margin: 0;
         }
-        .masonry {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            max-width: 1200px;
-            padding: 1rem;
-            box-sizing: border-box;
-        }
-        .masonry-item {
+        .image-card, .grid-item {
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
             border-radius: 10px;
             overflow: hidden;
-            position: relative;
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            max-width: 100%;
             cursor: pointer;
         }
-        .masonry-item:hover {
+        .image-card:hover, .grid-item:hover {
             transform: scale(1.05);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
-        .masonry-item img {
-            max-width: 100%;
+        .tab {
+            transition: background-color 0.3s;
+        }
+        .tab:hover {
+            background-color: #1D5D62;
+        }
+        .tab.active {
+            background-color: #1D5D62;
+            color: white;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .grid-item img, .image-card img {
+            width: 100%;
             height: auto;
             display: block;
+            object-fit: cover;
         }
-        .masonry-item .overlay {
+        .grid-item .overlay, .image-card .overlay {
             position: absolute;
             top: 0;
             left: 0;
@@ -105,7 +69,7 @@
             font-weight: 600;
             text-align: center;
         }
-        .masonry-item:hover .overlay {
+        .grid-item:hover .overlay, .image-card:hover .overlay {
             opacity: 1;
         }
         .modal {
@@ -119,83 +83,31 @@
             background-color: rgba(0, 0, 0, 0.9);
             justify-content: center;
             align-items: center;
-            overflow: auto;
+            overflow: hidden;
         }
         .modal-content {
-            max-width: 90%;
-            max-height: 90%;
-            margin: auto;
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
             display: block;
+            object-fit: contain;
         }
         .close {
             position: absolute;
-            top: 20px;
+            top: 30px;
             right: 30px;
             color: white;
             font-size: 40px;
             font-weight: bold;
             cursor: pointer;
+            z-index: 1001;
         }
-        @media (max-width: 768px) {
-            .masonry-item img {
-                max-width: 80%;
-            }
-        }
-        @media (max-width: 480px) {
-            .masonry-item img {
-                max-width: 90%;
-            }
-            .masonry-item .overlay {
-                font-size: 1rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="masonry">
-        <div class="masonry-item" onclick="openModal('1.jpeg')">
-            <img src="1.jpeg">
-        </div>
-    </div>
-
-    <div id="imageModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="modalImage">
-    </div>
-
-    <script>
-        function openModal(imageSrc) {
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            modal.style.display = 'flex';
-            modalImg.src = imageSrc;
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('imageModal');
-            modal.style.display = 'none';
-        }
-
-        document.getElementById('imageModal').addEventListener('click', function(event) {
-            if (event.target === this) {
-                closeModal();
-            }
-        });
-    </script>
-	
-	<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
         footer {
             color: white;
             text-align: center;
             padding: 20px 0;
             width: 100%;
             position: relative;
-            bottom: 0;
         }
         .social-icons a {
             color: white;
@@ -207,209 +119,138 @@
         .social-icons a:hover {
             color: #007bff;
         }
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .grid-item .overlay, .image-card .overlay {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
-<body>
-    <footer>
-        <div class="social-icons">
-            <a href="https://www.instagram.com/" target="_blank" title="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
+<body class="min-h-screen flex flex-col items-center py-4 sm:py-8">
+    <h1 class="text-3xl sm:text-4xl font-bold text-white mb-6 sm:mb-8">Mutluer Bale</h1>
+
+    <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 mb-6 sm:mb-8 w-full max-w-6xl px-4 justify-center items-center">
+        <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg active" onclick="showCategory('anasayfa')">Anasayfa</button>
+        <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg" onclick="showCategory('baledenesintiler')">Baleden Esintiler</button>
+        <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg" onclick="showCategory('galeri')">Galeri</button>
+        <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg" onclick="showCategory('iletişim')">İletişim</button>
+    </div>
+
+    <!-- Anasayfa Section -->
+    <section id="anasayfa" class="category w-full max-w-6xl mb-8 sm:mb-12 px-4">
+        <div class="image-card" onclick="openModal('1.jpeg', 'anasayfaModal')">
+            <img src="1.jpeg" alt="Bale Performansı">
+            <div class="overlay"></div>
         </div>
-    </footer>
-</body>
-</html>
-
-	</section>
-	
-
-    <section id="baledenesintiler" class="category w-full max-w-6xl hidden mb-8 sm:mb-12 px-4">
-        
+        <div id="anasayfaModal" class="modal">
+            <span class="close" onclick="closeModal('anasayfaModal')">&times;</span>
+            <img class="modal-content" id="anasayfaModalImage">
+        </div>
     </section>
 
-    <section id="galeri" class="category w-full max-w-6xl hidden mb-8 sm:mb-12 px-4">
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mutluer Bale - Galeri</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-    body {
-        background-color: #2B8F98; /* Turquoise background */
-        display: flex;
-        justify-content: center; /* Center content horizontally */
-        align-items: center; /* Center content vertically */
-        flex-direction: column;
-        min-height: 100vh;
-    }
-    .tab {
-        transition: background-color 0.3s;
-    }
-    .tab:hover {
-        background-color: #1D5D62; /* Darker turquoise on hover */
-    }
-    .tab.active {
-        background-color: #1D5D62; /* Darker turquoise for active tab */
-        color: white;
-    }
-    .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); /* Exactly 3 columns on desktop */
-        gap: 1.5rem;
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 1rem;
-        box-sizing: border-box;
-    }
-    .grid-item {
-        position: relative;
-        border-radius: 10px;
-        overflow: hidden;
-        transition: transform 0.3s, box-shadow 0.3s;
-        cursor: pointer;
-    }
-    .grid-item:hover {
-        transform: scale(1.05);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    }
-    .grid-item img {
-        width: 100%;
-        height: auto;
-        display: block;
-        object-fit: cover;
-    }
-    .grid-item .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(29, 93, 98, 0.7); /* Darker turquoise overlay */
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        transition: opacity 0.3s;
-        font-size: 1.2rem;
-        font-weight: 600;
-        text-align: center;
-    }
-    .grid-item:hover .overlay {
-        opacity: 1;
-    }
-    /* Modal styles */
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.9);
-        justify-content: center;
-        align-items: center;
-        overflow: auto;
-    }
-    .modal-content {
-        width: auto;
-        height: auto;
-        max-width: 90vw; /* Max 90% of viewport width */
-        max-height: 90vh; /* Max 90% of viewport height */
-        margin: auto;
-        display: block;
-        object-fit: contain; /* Maintain aspect ratio */
-        border-radius: 10px;
-    }
-    .close {
-        position: absolute;
-        top: 20px;
-        right: 30px;
-        color: white;
-        font-size: 40px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-    @media (max-width: 768px) {
-        .gallery-grid {
-            grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
-        }
-    }
-    @media (max-width: 480px) {
-        .gallery-grid {
-            grid-template-columns: 1fr; /* 1 column for mobile */
-        }
-        .grid-item .overlay {
-            font-size: 1rem;
-        }
-    }
-</style>
-</head>
-<body class="min-h-screen flex flex-col">
-    <!-- Galeri Resim Değiştirme -->
-    <div class="gallery-grid">
-       
-		<div class="grid-item" onclick="openModal('11.jpeg')">
-            <img src="11.jpeg" alt="Bale Performansı 1">
-        </div>
-        
-		<div class="grid-item" onclick="openModal('22.jpeg')">
-            <img src="22.jpeg" alt="Bale Performansı 2">
-        </div>
-       
-		<div class="grid-item" onclick="openModal('33.jpeg')">
-            <img src="33.jpeg" alt="Bale Performansı 3">
-        </div>
-       
-		<div class="grid-item" onclick="openModal('44.jpeg')">
-            <img src="44.jpeg" alt="Bale Performansı 4">
+    <!-- Baleden Esintiler Section -->
+    <section id="baledenesintiler" class="category w-full max-w-6xl hidden mb-8 sm:mb-12 px-4">
+        <div class="gallery-grid">
+			
+			
+			
+            <div class="grid-item" onclick="openModal('image0.jpeg', 'baledenesintilerModal')">
+                <img src="image0.jpeg" alt="Bale Performansı 2">
+                <div class="overlay"></div>
+            </div>
+			
+            <div class="grid-item" onclick="openModal('image1.jpeg', 'baledenesintilerModal')">
+                <img src="image1.jpeg" alt="Bale Performansı 3">
+                <div class="overlay"></div>
+            </div>
+			
+            <div class="grid-item" onclick="openModal('image2.jpeg', 'baledenesintilerModal')">
+                <img src="image2.jpeg" alt="Bale Performansı 4">
+                <div class="overlay"></div>
+            </div>
+			
+            <div class="grid-item" onclick="openModal('image3.jpeg', 'baledenesintilerModal')">
+                <img src="image3.jpeg" alt="Bale Performansı 1">
+                <div class="overlay"></div>
+            </div>
+			
+            <div class="grid-item" onclick="openModal('image4.jpeg', 'baledenesintilerModal')">
+                <img src="image4.jpeg" alt="Bale Performansı 5">
+                <div class="overlay"></div>
+            </div>
+			
+            <div class="grid-item" onclick="openModal('image5.jpeg', 'baledenesintilerModal')">
+                <img src="image5.jpeg" alt="Bale Performansı 6">
+                <div class="overlay"></div>
+            </div>
+			
+            <div class="grid-item" onclick="openModal('image6.jpeg', 'baledenesintilerModal')">
+                <img src="image6.jpeg" alt="Bale Performansı 7">
+                <div class="overlay"></div>
+            </div>
+			
+            <div class="grid-item" onclick="openModal('image7.jpeg', 'baledenesintilerModal')">
+                <img src="image7.jpeg" alt="Bale Performansı 8">
+                <div class="overlay"></div>
+            </div>
+			
+			
+			
+			
+			
         </div>
 		
-    </div>
+        <div id="baledenesintilerModal" class="modal">
+            <span class="close" onclick="closeModal('baledenesintilerModal')">&times;</span>
+            <img class="modal-content" id="baledenesintilerModalImage">
+        </div>
+    </section>
 
-    <!-- Modal for full-screen image -->
-    <div id="imageModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="modalImage">
-    </div>
+    <!-- Galeri Section -->
+    <section id="galeri" class="category w-full max-w-6xl hidden mb-8 sm:mb-12 px-4">
+        <div class="gallery-grid">
+           
+			
+			
+			<div class="grid-item" onclick="openModal('22.jpeg', 'galeriModal')">
+                <img src="22.jpeg" alt="Bale Performansı 2">
+                <div class="overlay"></div>
+            </div>
+           
+			<div class="grid-item" onclick="openModal('33.jpeg', 'galeriModal')">
+                <img src="33.jpeg" alt="Bale Performansı 3">
+                <div class="overlay"></div>
+            </div>
+           
+			<div class="grid-item" onclick="openModal('44.jpeg', 'galeriModal')">
+                <img src="44.jpeg" alt="Bale Performansı 4">
+                <div class="overlay"></div>
+            </div>
+            
+			<div class="grid-item" onclick="openModal('11.jpeg', 'galeriModal')">
+                <img src="11.jpeg" alt="Bale Performansı 1">
+                <div class="overlay"></div>
+            </div>
+			
+			
+			
+			
+        </div>
+        <div id="galeriModal" class="modal">
+            <span class="close" onclick="closeModal('galeriModal')">&times;</span>
+            <img class="modal-content" id="galeriModalImage">
+        </div>
+    </section>
 
-    <script>
-        // Open the modal with the clicked image
-        function openModal(imageSrc) {
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            modal.style.display = 'flex';
-            modalImg.src = imageSrc;
-            // Ensure image loads before displaying
-            modalImg.onload = () => {
-                modalImg.style.display = 'block';
-            };
-            modalImg.onerror = () => {
-                console.error('Failed to load image:', imageSrc);
-            };
-        }
-
-        // Close the modal
-        function closeModal() {
-            const modal = document.getElementById('imageModal');
-            modal.style.display = 'none';
-        }
-
-        // Close modal when clicking outside the image
-        document.getElementById('imageModal').addEventListener('click', function(event) {
-            if (event.target === this) {
-                closeModal();
-            }
-        });
-    </script>
-</body>
-</html>
-	</section>
-
+    <!-- İletişim Section -->
     <section id="iletişim" class="category w-full max-w-6xl hidden mb-8 sm:mb-12 px-4">
         <h2 class="text-xl sm:text-2xl font-semibold text-white mb-4">İletişim</h2>
         <div class="bg-white rounded-lg shadow-lg p-4 sm:p-6">
@@ -434,91 +275,54 @@
                         <p class="text-gray-600 text-sm sm:text-base">+90 532 315 6107</p>
                     </div>
                 </div>
-                <html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        footer {
-            color: black;
-            text-align: center;
-            padding: 20px 0;
-            width: 100%;
-            position: relative;
-            bottom: 0;
-        }
-        .social-icons a {
-            color: black;
-            margin: 0 15px;
-            font-size: 30px;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .social-icons a:hover {
-            color: #007bff;
-        }
-    </style>
-</head>
-<body>
-    <footer>
-        <div class="social-icons">
-            <a href="https://www.instagram.com/" target="_blank" title="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-           
-            <a href="https://www.x.com/" target="_blank" title="X">
-                <i class="fab fa-x-twitter"></i>
-            </a>
-            
-            <a href="https://www.facebook.com/" target="_blank" title="Facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-           
-            <a href="https://www.linkedin.com/in/" target="_blank" title="LinkedIn">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-            
-            <a href="https://www.youtube.com/channel/" target="_blank" title="YouTube">
-                <i class="fab fa-youtube"></i>
-            </a>
-        </div>
-    </footer>
-</body>
-</html>
-
-                </div>
             </div>
         </div>
     </section>
 
+    <footer>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/mutluerbale?igsh=MTc2c282aTA2NXh5cw==" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    </footer>
 
-        <script>
+    <script>
         function showCategory(categoryId) {
-            // Hide all categories
             document.querySelectorAll('.category').forEach(section => {
                 section.classList.add('hidden');
             });
-
-            // Show selected category
             document.getElementById(categoryId).classList.remove('hidden');
-
-            // Update active tab
             document.querySelectorAll('.tab').forEach(tab => {
                 tab.classList.remove('active');
             });
             document.querySelector(`button[onclick="showCategory('${categoryId}')"]`).classList.add('active');
         }
 
-                showCategory('anasayfa');
+        function openModal(imageSrc, modalId) {
+            const modal = document.getElementById(modalId);
+            const modalImg = document.getElementById(`${modalId}Image`);
+            modal.style.display = 'flex';
+            modalImg.src = imageSrc;
+            modalImg.onload = () => {
+                modalImg.style.display = 'block';
+            };
+            modalImg.onerror = () => {
+                console.error('Failed to load image:', imageSrc);
+            };
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'none';
+        }
+
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(event) {
+                if (event.target === this) {
+                    closeModal(this.id);
+                }
+            });
+        });
+
+        showCategory('anasayfa');
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
