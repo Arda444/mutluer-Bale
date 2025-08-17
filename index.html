@@ -34,85 +34,154 @@
     <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg active" onclick="showCategory('anasayfa')">Anasayfa</button>
     <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg" onclick="showCategory('baledenesintiler')">Baleden Esintiler</button>
     <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg" onclick="showCategory('galeri')">Galeri</button>
-    <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg" onclick="showCategory('hakkımızda')">Hakkımızda</button>
     <button class="tab px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-semibold text-white rounded-lg" onclick="showCategory('iletişim')">İletişim</button>
 </div>
 
     <!-- Image Sections -->
     <section id="anasayfa" class="category w-full max-w-6xl mb-8 sm:mb-12 px-4">
-    <img src="balerin.png" alt="Açıklama" width="492" height="500" style="display: block; margin-left: auto; margin-right: auto;">
-	
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mutluer Bale - Süslü Yazı</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutluer Bale - Galeri</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            background-color: #2B8F98; /* Turquoise background */
+            background-color: #2B8F98;
             min-height: 100vh;
             display: flex;
-            justify-content: center; /* Horizontal centering */
-            align-items: center; /* Vertical centering */
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
             margin: 0;
-            padding: 1rem; /* Padding for small screens */
         }
-
-        .ballerina-text {
-            font-family: 'Dancing Script', cursive;
-            font-weight: 700;
-            font-size: 2.5rem; /* Default font size for large screens */
-            color: #ffffff; /* White text for contrast */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow effect */
-            text-align: center; /* Center text within the div */
+        .masonry {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
             padding: 1rem;
-            border-radius: 15px;
-            display: block; /* Use block for better centering */
-            width: fit-content; /* Only take necessary width */
-            max-width: 90%; /* Limit width for mobile */
-            line-height: 1.4; /* Improve readability for long text */
-            position: relative;
+            box-sizing: border-box;
+        }
+        .masonry-item {
+            border-radius: 10px;
             overflow: hidden;
-            margin: 0 auto; /* Ensure horizontal centering */
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 100%;
+            cursor: pointer;
         }
-
-
-        @keyframes sparkle {
-            0% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-            100% { opacity: 0.5; transform: scale(1); }
+        .masonry-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
-
+        .masonry-item img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        .masonry-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(29, 93, 98, 0.7);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        .masonry-item:hover .overlay {
+            opacity: 1;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+        }
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            margin: auto;
+            display: block;
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
         @media (max-width: 768px) {
-            .ballerina-text {
-                font-size: 1.8rem; /* Smaller font for tablets */
-                padding: 0.75rem;
-            }
-
-            .ballerina-text::before,
-            .ballerina-text::after {
-                font-size: 1.5rem; /* Smaller decoration for tablets */
+            .masonry-item img {
+                max-width: 80%;
             }
         }
-
         @media (max-width: 480px) {
-            .ballerina-text {
-                font-size: 1.5rem; /* Smaller font for mobile */
-                padding: 0.5rem;
+            .masonry-item img {
+                max-width: 90%;
             }
-
-            .ballerina-text::before,
-            .ballerina-text::after {
-                font-size: 1.2rem; /* Smaller decoration for mobile */
+            .masonry-item .overlay {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="ballerina-text">
-        Mutluer Bale ile dansın büyülü dünyasına adım atın! Her yaştan ve seviyeden bale tutkunlarına, profesyonel eğitmenlerimizle ilham verici bir yolculuk sunuyoruz. Disiplin, zarafet ve tutkunun birleştiği bu sanatta, hayallerinizi sahneye taşımak için yanınızdayız. Mutluer Bale, sadece bir kurs değil, aynı zamanda kendinizi keşfedeceğiniz, bedeninizi ve ruhunuzu özgür bırakacağınız bir yaşam tarzıdır. Gelin, bu eşsiz serüvene birlikte başlayalım!
+    <div class="masonry">
+        <div class="masonry-item" onclick="openModal('1.jpeg')">
+            <img src="1.jpeg">
+        </div>
     </div>
-</body>
-</html>
+
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script>
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'flex';
+            modalImg.src = imageSrc;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+
+        document.getElementById('imageModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeModal();
+            }
+        });
+    </script>
 	
 	<html lang="tr">
 <head>
@@ -146,22 +215,6 @@
             <a href="https://www.instagram.com/" target="_blank" title="Instagram">
                 <i class="fab fa-instagram"></i>
             </a>
-           
-            <a href="https://www.x.com/" target="_blank" title="X">
-                <i class="fab fa-x-twitter"></i>
-            </a>
-            
-            <a href="https://www.facebook.com/" target="_blank" title="Facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-           
-            <a href="https://www.linkedin.com/in/" target="_blank" title="LinkedIn">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-            
-            <a href="https://www.youtube.com/channel/" target="_blank" title="YouTube">
-                <i class="fab fa-youtube"></i>
-            </a>
         </div>
     </footer>
 </body>
@@ -175,8 +228,6 @@
     </section>
 
     <section id="galeri" class="category w-full max-w-6xl hidden mb-8 sm:mb-12 px-4">
-     
-		<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -191,6 +242,7 @@
         justify-content: center; /* Center content horizontally */
         align-items: center; /* Center content vertically */
         flex-direction: column;
+        min-height: 100vh;
     }
     .tab {
         transition: background-color 0.3s;
@@ -202,38 +254,34 @@
         background-color: #1D5D62; /* Darker turquoise for active tab */
         color: white;
     }
-    .masonry {
-        column-count: 3; /* Default 3 columns for desktop */
-        column-gap: 1.5rem;
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Exactly 3 columns on desktop */
+        gap: 1.5rem;
         width: 100%;
         max-width: 1200px;
-        margin: 0 auto; /* Center the masonry container */
+        margin: 0 auto;
         padding: 1rem;
         box-sizing: border-box;
     }
-    .masonry-item {
-        break-inside: avoid; /* Prevent items from breaking across columns */
-        margin-bottom: 1.5rem;
+    .grid-item {
+        position: relative;
         border-radius: 10px;
         overflow: hidden;
-        position: relative;
         transition: transform 0.3s, box-shadow 0.3s;
-        display: inline-block; /* Ensure items respect column layout */
-        width: 100%; /* Ensure items take full column width */
-        text-align: center; /* Center content inside masonry-item */
-        cursor: pointer; /* Indicate clickable item */
+        cursor: pointer;
     }
-    .masonry-item:hover {
+    .grid-item:hover {
         transform: scale(1.05);
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     }
-    .masonry-item img {
+    .grid-item img {
         width: 100%;
         height: auto;
         display: block;
-        margin: 0 auto; /* Center the image */
+        object-fit: cover;
     }
-    .masonry-item .overlay {
+    .grid-item .overlay {
         position: absolute;
         top: 0;
         left: 0;
@@ -250,7 +298,7 @@
         font-weight: 600;
         text-align: center;
     }
-    .masonry-item:hover .overlay {
+    .grid-item:hover .overlay {
         opacity: 1;
     }
     /* Modal styles */
@@ -268,10 +316,14 @@
         overflow: auto;
     }
     .modal-content {
-        max-width: 90%;
-        max-height: 90%;
+        width: auto;
+        height: auto;
+        max-width: 90vw; /* Max 90% of viewport width */
+        max-height: 90vh; /* Max 90% of viewport height */
         margin: auto;
         display: block;
+        object-fit: contain; /* Maintain aspect ratio */
+        border-radius: 10px;
     }
     .close {
         position: absolute;
@@ -283,50 +335,40 @@
         cursor: pointer;
     }
     @media (max-width: 768px) {
-        .masonry {
-            column-count: 2; /* 2 columns for tablets */
+        .gallery-grid {
+            grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
         }
     }
     @media (max-width: 480px) {
-        .masonry {
-            column-count: 1; /* 1 column for mobile */
+        .gallery-grid {
+            grid-template-columns: 1fr; /* 1 column for mobile */
         }
-        .masonry-item .overlay {
+        .grid-item .overlay {
             font-size: 1rem;
         }
     }
 </style>
 </head>
 <body class="min-h-screen flex flex-col">
-    <!-- Gallery Section -->
-    <div class="masonry">
-        <div class="masonry-item" onclick="openModal('1.jpg')">
-            <img src="1.jpg" alt="Bale Performansı 1">
+    <!-- Galeri Resim Değiştirme -->
+    <div class="gallery-grid">
+       
+		<div class="grid-item" onclick="openModal('11.jpeg')">
+            <img src="11.jpeg" alt="Bale Performansı 1">
         </div>
-        <div class="masonry-item" onclick="openModal('2.jpg')">
-            <img src="2.jpg" alt="Bale Performansı 2">
+        
+		<div class="grid-item" onclick="openModal('22.jpeg')">
+            <img src="22.jpeg" alt="Bale Performansı 2">
         </div>
-        <div class="masonry-item" onclick="openModal('3.jpg')">
-            <img src="3.jpg" alt="Bale Performansı 3">
+       
+		<div class="grid-item" onclick="openModal('33.jpeg')">
+            <img src="33.jpeg" alt="Bale Performansı 3">
         </div>
-        <div class="masonry-item" onclick="openModal('4.jpg')">
-            <img src="4.jpg" alt="Bale Performansı 4">
+       
+		<div class="grid-item" onclick="openModal('44.jpeg')">
+            <img src="44.jpeg" alt="Bale Performansı 4">
         </div>
-        <div class="masonry-item" onclick="openModal('5.jpg')">
-            <img src="5.jpg" alt="Bale Performansı 5">
-        </div>
-        <div class="masonry-item" onclick="openModal('6.jpg')">
-            <img src="6.jpg" alt="Bale Performansı 6">
-        </div>
-        <div class="masonry-item" onclick="openModal('7.jpg')">
-            <img src="7.jpg" alt="Bale Performansı 7">
-        </div>
-        <div class="masonry-item" onclick="openModal('8.jpg')">
-            <img src="8.jpg" alt="Bale Performansı 8">
-        </div>
-        <div class="masonry-item" onclick="openModal('9.jpg')">
-            <img src="9.jpg" alt="Bale Performansı 9">
-        </div>
+		
     </div>
 
     <!-- Modal for full-screen image -->
@@ -342,6 +384,13 @@
             const modalImg = document.getElementById('modalImage');
             modal.style.display = 'flex';
             modalImg.src = imageSrc;
+            // Ensure image loads before displaying
+            modalImg.onload = () => {
+                modalImg.style.display = 'block';
+            };
+            modalImg.onerror = () => {
+                console.error('Failed to load image:', imageSrc);
+            };
         }
 
         // Close the modal
@@ -360,105 +409,6 @@
 </body>
 </html>
 	</section>
-
-<section id="hakkımızda" class="category w-full max-w-6xl hidden mb-8 sm:mb-12 px-4">
-    <img src="logo.jpg" alt="Açıklama" width="400" height="400" style="display: block; margin-left: auto; margin-right: auto;">
-	<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mutluer Bale - Vizyon ve Misyon</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            
-        }
-        .vision-mission {
-            font-family: 'Dancing Script', cursive;
-            color: #ffffff; /* White text for contrast */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow */
-            border-radius: 15px;
-            padding: 2rem;
-            max-width: 90%;
-            margin: 2rem auto;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .vision-mission h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        .vision-mission p {
-            font-size: 1.5rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-        .vision-mission ul {
-            list-style-type: none;
-            padding: 0;
-            font-size: 1.5rem;
-            line-height: 1.6;
-            text-align: left;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .vision-mission ul li {
-            margin-bottom: 1rem;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        }
-        @keyframes sparkle {
-            0% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-            100% { opacity: 0.5; transform: scale(1); }
-        }
-        @media (max-width: 768px) {
-            .vision-mission h2 {
-                font-size: 2rem;
-            }
-            .vision-mission p, .vision-mission ul {
-                font-size: 1.2rem;
-            }
-            .vision-mission {
-                padding: 1.5rem;
-            }
-        }
-        @media (max-width: 480px) {
-            .vision-mission h2 {
-                font-size: 1.5rem;
-            }
-            .vision-mission p, .vision-mission ul {
-                font-size: 1rem;
-            }
-            .vision-mission {
-                padding: 1rem;
-            }
-        }
-    </style>
-</head>
-<body class="min-h-screen flex flex-col items-center justify-center">
-    <div class="vision-mission">
-        <h2>🌟 Vizyon</h2>
-        <p>Mutluer Bale, Türkiye’de bale sanatında ilham veren, yenilikçi ve saygın bir akımın öncüsü olmayı hedefler. Her yaştan bireye zarafet, özgüven ve sanat sevgisi kazandırarak, bale eğitimini erişilebilir, çağdaş ve kaliteli hale getirir. Sanat yolculuğunda öğrencilerimizi ulusal ve uluslararası platformlarda temsil edebilecek sanatçılar yetiştirmeyi amaçlar.</p>
-        <hr class="border-t-2 border-white/30 my-6">
-        <h2>🎯 Misyon</h2>
-        <ul>
-            <li><strong>Kaliteli Eğitim:</strong> Alanında uzman eğitmen kadrosuyla, öğrencilerin teknik becerilerini, sahne kültürlerini ve sanatsal ifadelerini geliştiririz.</li>
-            <li><strong>Kişisel Gelişim:</strong> Disiplin, özgüven ve özveri temellerine sahip bireyler yetiştirerek, bale sanatının ötesinde hayat becerileri kazandırırız.</li>
-            <li><strong>Yaratıcılık ve Özgünlük:</strong> Ders programlarımızı, klasik bale ile çağdaş dokunuşları harmanlayarak modern dünyaya uygun hale getiririz.</li>
-            <li><strong>Toplumsal Katkı:</strong> Seminerler, gösteriler ve yardımcı etkinliklerle sanat bilincini yaygınlaştırmaya, halkla buluşturmaya ve yerel kültüre katkıda bulunmaya çalışırız.</li>
-            <li><strong>Erişilebilirlik:</strong> Yaş, yetenek veya geçmiş fark etmeksizin herkese hitap eden kapsayıcı bir eğitim anlayışını benimseriz.</li>
-        </ul>
-    </div>
-</body>
-</html>
-    </section>
 
     <section id="iletişim" class="category w-full max-w-6xl hidden mb-8 sm:mb-12 px-4">
         <h2 class="text-xl sm:text-2xl font-semibold text-white mb-4">İletişim</h2>
@@ -564,6 +514,7 @@
     </script>
 </body>
 </html>
+
 
 
 
